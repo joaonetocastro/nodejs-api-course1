@@ -1,0 +1,16 @@
+{
+  "name": "nodejs-api-course1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com-joaonetocastro:joaonetocastro/nodejs-api-course1.git",
+  "author": "joaonetocastro <j.neto111@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon -r sucrase/register src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20",
+    "sucrase": "^3.29.0"
+  }
+}
