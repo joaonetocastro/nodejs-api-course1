@@ -14,6 +14,7 @@ test("GET /products", async () => {
     .send(product)
 		.expect(200)
 		.then((response) => {
+      expect(response.body?.id).toBeTruthy()
 			expect(response.body?.name).toBe('any_product')
 			expect(response.body?.price).toBe(98.72)
 			expect(response.body?.quantity).toBe(12)
