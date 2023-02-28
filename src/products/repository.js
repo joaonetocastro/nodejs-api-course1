@@ -1,3 +1,5 @@
+import Crypto from 'crypto'
+
 let products = [
     {
       id: '240d890b-5f98-41d6-b4a1-c829a824a500',
@@ -42,6 +44,15 @@ const productsRepository = {
       const product = products.find(item => item.id == id)
       return product
     },
+    create(product) {
+      const createdProduct = {
+        id: Crypto.randomUUID(),
+        ...product
+      }
+      products.push(createdProduct)
+
+      return createdProduct
+    }
 }
 
 export { productsRepository }
