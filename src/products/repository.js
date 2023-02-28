@@ -37,7 +37,11 @@ const productsRepository = {
     },
     deleteById(id) {
       products = products.filter(item => item.id !== id)
-    }
+    },
+    getById(id) {
+      const product = products.find(item => item.id == id)
+      return product
+    },
 }
 
 export { productsRepository }
