@@ -1,6 +1,5 @@
 import {createServer} from "../../src/server"
 import supertest from 'supertest'
-// ...
 
 test("GET /products", async () => {
   const product = {
