@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken'
 import { ValidationError } from '../../utils/ValidationError'
 import { usersRepository } from '../repository'
 
@@ -10,6 +11,16 @@ export const login = async (req, res) => {
     if(!user || user.password !== req.body.password){
         throw new ValidationError('Invalid Credentials')
     }
+
+    const jwtSecret = 'secret-key'
+    const token = jwt.sign({username: req.body.username}, jwtSecret, {
+        expiresIn: '1 hour'
+    })
     
-    res.send({message: 'login successful'})
+    const response = {
+        accessToken: token,
+        expiresIn: 60*60
+    }
+    
+    res.send(response)
 }

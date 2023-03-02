@@ -24,7 +24,7 @@ export const createServer = () => {
       })
       return
     }
-  
+    console.log('Unexpected Error: ',error.message)
     res.status(500).json({
       message: 'Internal Server Error'
     })
