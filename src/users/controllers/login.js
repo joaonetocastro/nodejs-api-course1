@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
 import { JWT_SECRET } from '../../environment'
 import { ValidationError } from '../../utils/ValidationError'
 import { usersRepository } from '../repository'
@@ -9,7 +10,7 @@ export const login = async (req, res) => {
 
     const user = await usersRepository.getByUsername(req.body.username)
 
-    if(!user || user.password !== req.body.password){
+    if(!user || !(await bcrypt.compare(req.body.password, user.password))) {
         throw new ValidationError('Invalid Credentials')
     }
 
