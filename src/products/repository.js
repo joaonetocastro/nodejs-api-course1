@@ -1,12 +1,5 @@
-import mongoose from 'mongoose'
+import { Product } from "../models/Product"
 
-const Product = mongoose.model('Product', mongoose.Schema({
-  id: String,
-  name: String,
-  price: Number,
-  quantity: Number
-}))
-  
 const productsRepository = {
     async getAll(){
         const response = await Product.find()
