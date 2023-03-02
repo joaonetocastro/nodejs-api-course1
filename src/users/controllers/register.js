@@ -11,9 +11,7 @@ export const register = async (req, res) => {
     if(userExists) {
         throw new ValidationError('User already registered.')
     }
-    const saltRound = 12
-    const salt = await bcrypt.genSalt(saltRound)
-    const passwordHash = await bcrypt.hash(req.body.password, salt)
+    const passwordHash = await bcrypt.hash(req.body.password, 12)
 
     const response = await usersRepository.create({
         username: req.body.username,
