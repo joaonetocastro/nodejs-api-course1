@@ -2,6 +2,7 @@ import express from 'express'
 import 'express-async-errors'
 
 import { productsRoutes } from './products/routes'
+import { usersRoutes } from './users/routes'
 import { ValidationError } from './utils/ValidationError'
 
 export const createServer = () => {
@@ -14,6 +15,7 @@ export const createServer = () => {
   })
   
   app.use('/products', productsRoutes)
+  app.use('/users', usersRoutes)
   
   app.use((error, req,res,next) => {
     if(error instanceof ValidationError) {
