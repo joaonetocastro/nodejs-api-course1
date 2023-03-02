@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+import { JWT_SECRET } from '../../environment'
 import { ValidationError } from '../../utils/ValidationError'
 import { usersRepository } from '../repository'
 
@@ -12,11 +13,10 @@ export const login = async (req, res) => {
         throw new ValidationError('Invalid Credentials')
     }
 
-    const jwtSecret = 'secret-key'
     const token = jwt.sign({
         userId: user.id,
         username: user.username
-    }, jwtSecret, {
+    }, JWT_SECRET, {
         expiresIn: '1 hour'
     })
     
