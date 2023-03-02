@@ -17,9 +17,6 @@ const productsRepository = {
         ...product
       })
 
-      console.log({response})
-      // products.push(createdProduct)
-
       return response
     }
 }

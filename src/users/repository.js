@@ -1,25 +1,12 @@
-import Crypto from 'crypto'
-
-const users = [
-    {
-        id: '1',
-        username: 'admin',
-        password: 'admin'
-    }
-]
+import { User } from "../models/User"
 
 export const usersRepository = {
-    create: (user) => {
-        const id = Crypto.randomUUID()
-        const createdUser = {
-            id, 
-            ...user
-        }
-
-        users.push(createdUser)
-        return createdUser
+    create: async (user) => {
+        const response = await User.create(user)
+        return response
     },
-    getByUsername: (username) => {
-        return users.find(user => user.username === username) || null
+    getByUsername: async (username) => {
+        const response = await User.findOne({username})
+        return response
     }
 }

@@ -9,6 +9,8 @@ export const register = async (req, res) => {
         username: req.body.username,
         password: req.body.password,
     })
-    
-    res.send({...response, password: undefined})
+
+    res.send({
+        _id: response._id, username: response.username, __v: response.__v
+    })
 }
