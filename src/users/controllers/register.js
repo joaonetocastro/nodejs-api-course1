@@ -5,6 +5,12 @@ export const register = async (req, res) => {
     if(!req.body.username) throw new ValidationError('Username required')
     if(!req.body.password) throw new ValidationError('Password Required')
 
+    const userExists = await usersRepository.getByUsername(req.body.username)
+
+    if(userExists) {
+        throw new ValidationError('User already registered.')
+    }
+    
     const response = await usersRepository.create({
         username: req.body.username,
         password: req.body.password,
